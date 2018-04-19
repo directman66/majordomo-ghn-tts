@@ -1,0 +1,50 @@
+
+ [#if VIEW_MODE="search_gn_tts" || VIEW_MODE=""#]
+
+[#if OK#]
+   <div class="alert alert-success"><#LANG_DATA_SAVED#></div>
+[#endif OK#]
+
+ 
+<!-- table zwave_devices search -->
+ <label class="control-label"> 
+Этот модуль работает в связке с проектом. https://github.com/noelportugal/google-home-notifier 
+Обязательно нужно установить последнюю версию google-home-notifier и убедиться, что вэб-сервис стартует по команде
+shell_exec("node /home/pi/google-home-notifier/example.js");
+</label>
+
+<div id='api_settings'>
+<form action="?" method="post" enctype="multipart/form-data" name="frmEdit" class="form-horizontal">
+
+<br>
+
+<fieldset>
+<div class="form-group">
+
+
+ <label class="control-label"> Google-notifier IP adress:port  ex:192.168.1.35:8091 (*) </label>
+ <div class="col-lg-6"><input type="text" class="form-control" name="gnip" value="[#GNIP#]" class="input"></div>
+</div>
+
+
+
+
+<div class="form-group">
+ <label class="control-label"> <#LANG_VALUE#>: (*) </label>
+ <div class="col-lg-6">
+ <input type="radio" name="disabled" value="0"[#if DISABLED!="1"#] checked[#endif#]><#LANG_ON#>
+ <input type="radio" name="disabled" value="1"[#if DISABLED=="1"#] checked[#endif#]><#LANG_OFF#>
+ </div>
+</div>
+
+<div class="form-actions">
+<button type="submit" name="subm" value="Submit" class="btn btn-primary"><#LANG_UPDATE#></button>
+<input type="hidden" name="view_mode" value="update_settings">
+<input type="hidden" name="mode" value="update">
+</div>
+</fieldset>
+</form>
+<div class="pull-left"><a href="?clean=1" class="btn btn-default">Run notifier</a></div>
+<div class="pull-left"><a href="?testphrase=1" class="btn btn-default">Test phrase</a></div>
+</div>
+ [#endif VIEW_MODE#]
